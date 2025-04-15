@@ -18,7 +18,7 @@ def get_days_from_today(transmitted_date):
         transmitted_date = datetime.strptime(transmitted_date, "%Y-%m-%d").date()
         days = transmitted_date - today
     except ValueError:
-        raise ValueError(f"Dates must be in the form: {date.today()}")
+        return f"Dates must be in the form: {date.today()}"
     return days.days
 
 def get_numbers_ticket(min, max, quantity):
@@ -39,7 +39,7 @@ def get_numbers_ticket(min, max, quantity):
     try:
         if min < 0 or max < 0:
             return []
-        if min >= max or quantity <= 0 or (max - min + 1) < quantity:
+        if min >= max or quantity <= 0 or (max - min + 1) < quantity or max > 1000:
             return []
         num_list = random.sample(range(min, max + 1), quantity)
         num_list.sort()
