@@ -7,7 +7,11 @@ def search_path(filename):
 
 def total_salary(path):
     salaries = []
-    with open(path, "r") as file:
+    total_sum = 0
+    quality = 0
+    average_sum = total_sum / quality
+    result = (total_sum, average_sum)
+    with open(path, "r", encoding="utf-8") as file:
         lines = [el.strip() for el in file.readlines()]
         print(lines)
         for line in lines:
@@ -16,7 +20,11 @@ def total_salary(path):
                 if el in "0123456789":
                     num = num + el
             salaries.append(num)
-    return salaries
+    for el in salaries:
+        total_sum += int(el)
+        quality = quality + 1
+    
+    return result
 
 
 filename = input("Enter a filename: ")
