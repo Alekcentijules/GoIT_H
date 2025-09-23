@@ -1,15 +1,15 @@
 from bot__ import parse_input
 from bot__ import add_contact, change_contact, output_phone
 
-def main():
-    # try:
-        contacts = {}
-        print("Welcome to the assistant bot!")
-        while True:
+def main():    # try:
+    contacts = {}
+    print("Welcome to the assistant bot!")
+    while True:
+        try:
             user_input = input("Enter a command: ")
             command, *args = parse_input(user_input)
-            print(parse_input(user_input))
-            print(command, *args)
+                # print(parse_input(user_input))
+                # print(command, *args)
             if command in ["close", "exit"]:
                 print("Good bye!")
                 break
@@ -19,20 +19,20 @@ def main():
                 print(add_contact(args, contacts))
             elif command == "change":
                 print(change_contact(args, contacts))
-            elif command == "phone":
-                try:    
-                    command, arg = parse_input(user_input)
-                    print(output_phone(arg, contacts))
-                except KeyError as err:
-                    print(f"This contact isn't in list: {err}")
+            elif command == "phone": 
+                command, arg = parse_input(user_input)
+                print(output_phone(arg, contacts))
             elif command == "all":
                 for name, phone in contacts.items():
                     print(name, phone)
+            elif command and args == "":
+                print("Invalid argument!")
             else:
                 print("Invalid command!")
-    # except KeyError as err:
-    #     print(f"This contact isn't in list. {err}")
-        
-
+        except ValueError:
+            print("Too many values!")
+        except KeyError as err:
+            print(f"This contact isn't in list: {err}")
+                  
 if __name__ == "__main__":
     main()
