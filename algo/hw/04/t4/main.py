@@ -1,15 +1,14 @@
 from bot__ import parse_input
 from bot__ import add_contact, change_contact, output_phone
 
-def main():    # try:
+def main():  
     contacts = {}
     print("Welcome to the assistant bot!")
     while True:
         try:
             user_input = input("Enter a command: ")
             command, *args = parse_input(user_input)
-                # print(parse_input(user_input))
-                # print(command, *args)
+
             if command in ["close", "exit"]:
                 print("Good bye!")
                 break
@@ -25,8 +24,6 @@ def main():    # try:
             elif command == "all":
                 for name, phone in contacts.items():
                     print(name, phone)
-            elif command and args == "":
-                print("Invalid argument!")
             else:
                 print("Invalid command!")
         except ValueError:
