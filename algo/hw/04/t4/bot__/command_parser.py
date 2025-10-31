@@ -1,7 +1,24 @@
+"""Module for parsing user commands."""
+
 def parse_input(user_input):
-    cmd, *args = user_input.split()
-    cmd = cmd.strip().lower()
-    values = user_input.split()
-    if len(values) == 2:
-        return cmd, values[1]
-    return cmd, *args
+    """
+    Splits user input into a command and arguments.
+
+    Args:
+        user_input (str): String entered by the user.
+
+    Returns:
+        Tuple[str, List[str]]: (command in lowercase, list of arguments)
+
+    Examples:
+        >>> parse_input("add John 123")
+        ('add', ['John', '123'])
+        >>> parse_input("Hello")
+        ('hello', [])
+    """
+    parts = user_input.strip().split()
+    if not parts:
+        return []
+    cmd = parts[0].lower()
+    args = parts[1:]
+    return cmd, args

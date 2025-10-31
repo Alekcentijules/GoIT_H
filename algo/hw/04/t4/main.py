@@ -1,12 +1,24 @@
-from bot__ import parse_input
-from bot__ import add_contact, change_contact, output_phone
+"""The main module of the assistant bot."""
 
-def main():  
+from bot__ import parse_input, add_contact, change_contact, output_phone
+
+def main():
+    """
+    The bot's main cycle: processing user commands.
+
+    Uses a dictionary to store contacts.
+    Ends with the commands 'close' or 'exit'.
+    """
     contacts = {}
     print("Welcome to the assistant bot!")
+
     while True:
         try:
-            user_input = input("Enter a command: ")
+            user_input = input("Enter a command: ").strip()
+            if not user_input:
+                print("Please enter a command.")
+                continue
+
             command, *args = parse_input(user_input)
 
             if command in ["close", "exit"]:
@@ -19,17 +31,18 @@ def main():
             elif command == "change":
                 print(change_contact(args, contacts))
             elif command == "phone": 
-                command, arg = parse_input(user_input)
-                print(output_phone(arg, contacts))
+                print(output_phone(args, contacts))
             elif command == "all":
-                for name, phone in contacts.items():
-                    print(name, phone)
+                if not contacts:
+                    print("No contacts saved.")
+                else:
+                    for name, phone in contacts.items():
+                        print(name, phone)
             else:
                 print("Invalid command!")
-        except ValueError:
-            print("Too many values!")
-        except KeyError as err:
-            print(f"This contact isn't in list: {err}")
-                  
+
+        except Exception as err:
+            print(f"Error: {err}")
+                         
 if __name__ == "__main__":
     main()
