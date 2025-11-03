@@ -2,12 +2,31 @@ from typing import Callable, Generator
 import re
 
 def generator_numbers(text: str) -> Generator[float, None, None]:
-    pattern = r"\d+\.\d+"
+    """
+    Generates real numbers from text.
+    
+    Args:
+        text (str): Text with numbers such as 123.45
+    
+    Yields:
+        float: Found numbers
+    """
+    pattern = r"\d\d+\.\d+\b"
     for num in re.findall(pattern, text):
         yield float(num)
 
 def sum_profit(text: str, func: Callable[[str], Generator[float, None, None]]) -> float:
-    return sum(func(text))
+    """
+    Calculates the total income from the text using a generator.
+
+    Args:
+        text (str): Input text.
+        func (Callable): Generator function that returns float.
+
+    Returns:
+        float: The sum of all numbers.
+    """
+    return sum(func(text)) if text.strip() else 0.0
 
 text = "Загальний дохід працівника складається з декількох частин: 1000.01 як основний дохід, доповнений додатковими " \
        "надходженнями 27.45 і 324.00 доларів."

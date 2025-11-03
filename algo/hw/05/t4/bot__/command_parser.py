@@ -1,6 +1,7 @@
 """Module for parsing user commands."""
+from typing import Tuple, List
 
-def parse_input(user_input):
+def parse_input(user_input: str) -> Tuple[str, List[str]]:
     """
     Splits user input into a command and arguments.
 
@@ -18,7 +19,7 @@ def parse_input(user_input):
     """
     parts = user_input.strip().split()
     if not parts:
-        return []
+        return ()
     cmd = parts[0].lower()
     args = parts[1:]
     return cmd, args

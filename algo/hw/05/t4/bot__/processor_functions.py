@@ -1,7 +1,18 @@
 """Module with command processing functions."""
 from functools import wraps
+from typing import List, Dict, Callable
 
-def input_error(func):
+Contacts = Dict[str, str]
+def input_error(func: callable) -> Callable:
+    """
+    Decorator for handling errors in commands.
+
+    Args:
+        func (Callable): Command handler.
+
+    Returns:
+        Callable: Wrapped function.
+    """
     @wraps(func)
     def inner(*args, **kwargs):
         try:
@@ -17,7 +28,7 @@ def input_error(func):
     return inner
 
 @input_error
-def add_contact(args, contacts):
+def add_contact(args: List[str], contacts: Contacts) -> str:
     """
     Adds a new contact.
 
@@ -39,7 +50,7 @@ def add_contact(args, contacts):
     return "Contact added!"
 
 @input_error
-def change_contact(args, contacts):
+def change_contact(args: List[str], contacts: Contacts) -> str:
     """
     Changes the number of an existing contact.
 
@@ -61,7 +72,7 @@ def change_contact(args, contacts):
     return "Contact changed!"
 
 @input_error
-def output_phone(args, contacts):
+def output_phone(args: List[str], contacts: Contacts) -> str:
     """
     Displays the phone number by name.
 
@@ -72,7 +83,7 @@ def output_phone(args, contacts):
     Returns:
         str: Phone number or error message
     """
-    if len(args) != 2:
+    if len(args) != 1:
         return "Phone requires exactly one name."
     name = args[0]
     if name not in contacts:

@@ -1,8 +1,9 @@
 """The main module of the assistant bot."""
 
 from bot__ import parse_input, add_contact, change_contact, output_phone
+from typing import NoReturn
 
-def main():
+def main() -> NoReturn:
     """
     The bot's main cycle: processing user commands.
 
@@ -19,7 +20,7 @@ def main():
                 print("Please enter a command.")
                 continue
 
-            command, *args = parse_input(user_input)
+            command, args = parse_input(user_input)
 
             if command in ["close", "exit"]:
                 print("Good bye!")

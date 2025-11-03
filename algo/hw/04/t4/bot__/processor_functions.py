@@ -53,7 +53,7 @@ def output_phone(args, contacts):
     Returns:
         str: Phone number or error message
     """
-    if len(args) != 2:
+    if len(args) != 1:
         return "Phone requires exactly one name."
     name = args[0]
     if name not in contacts:
