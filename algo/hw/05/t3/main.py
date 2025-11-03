@@ -16,11 +16,11 @@ def main():
         display_log_counter(counts)
 
         if level:
-            filtered = filter_logs_by_level(level, level)
+            filtered = filter_logs_by_level(logs, level)
             if filtered:
-                print(f"Log details for level: {level}")
+                print(f"\nLog details for level: {level}")
                 for log in filtered:
-                    print(f"{log['data'] | {log['time']} | {log['info']}}")
+                    print(f"{log['data']} | {log['time']} | {log['info']}")
             else:
                 print(f"No level records: {level}")
                 

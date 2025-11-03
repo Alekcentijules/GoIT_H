@@ -26,4 +26,4 @@ def display_log_counter(counts: dict):
     print("Level of log | Quality")
     print("-------------|--------")
     for level, count in counts.items():
-        print(f"{level:<13} | {count}")
+        print(f"{level:<12} | {count}")
