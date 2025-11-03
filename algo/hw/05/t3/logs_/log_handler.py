@@ -23,6 +23,7 @@ def count_logs_by_level(logs: list) -> dict:
     return Counter(log['level'] for log in logs)
 
 def display_log_counter(counts: dict):
-    print("Level of log    | Quality")
-    for level, count in count_logs_by_level(counts).items():
-        print(f"{level:<16} | {count}")
+    print("Level of log | Quality")
+    print("-------------|--------")
+    for level, count in counts.items():
+        print(f"{level:<13} | {count}")
